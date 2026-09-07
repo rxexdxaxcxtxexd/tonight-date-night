@@ -12,16 +12,21 @@ Updated: 2026-09-06
 - [x] Allowed identities are Luke + Ava only
 - [x] Hermes runtime/profile/cron/API inventory completed
 - [x] Hermes webhook intentionally remains disabled
-- [x] First VPS deployment attempt completed through the production-build gate
 - [x] Runtime-v1 bundle integrity passed on VPS
 - [x] API dependency install passed on VPS
 - [x] Python tests passed on VPS: 24/24
 - [x] Frontend dependency install passed on VPS
-- [x] Node test suite passed when run with `node --test`
-- [x] First production build failure isolated to missing Vite client type declaration; service correctly remained stopped/disabled
-- [x] Hotfix committed: `deploy/hotfix-001/apps/web/src/vite-env.d.ts`
-- [x] Frontend `test` script aligned to `node --test tests/*.test.mjs`
-- [x] COG resume runbook committed: `deploy/COG-RESUME-001.md`
+- [x] Node tests passed on VPS: 4/4
+- [x] TypeScript + Vite production build passed on VPS after hotfix-001
+- [x] `for-us-api.service` active + enabled
+- [x] API bound only to `127.0.0.1:8650`
+- [x] Loopback `/health` returns `{"status":"ok"}`
+- [x] HTTPS frontend returns 200 and `<title>For Us</title>`
+- [x] Unauthenticated `/api/auth/me` returns 401
+- [x] `/auth/google/start` redirects to Google
+- [x] nginx traversal fixed by restoring `/opt/for-us` to `750`; private data/env isolation remains intact
+- [x] `openclaw` cannot read `/var/lib/for-us` or the protected env file
+- [x] `/api/agent/*` and `/api/producer/*` remain unavailable while `FOR_US_PRODUCER_TOKEN` is intentionally unset
 
 ## P0 — Finish deployable source
 
@@ -32,10 +37,10 @@ Updated: 2026-09-06
 - [x] Ensure backend bundle has FastAPI source, requirements, SQLite store, auth/session layer, private media layer, producer endpoints, and tests
 - [x] Include production env template with no real secrets
 - [x] Include systemd/nginx deployment contract matching the live VPS
-- [x] Run current backend tests: 24/24 passing
-- [x] Run current Node logic tests: 4/4 passing locally
+- [x] Run backend tests: 24/24 passing
+- [x] Run Node logic tests: 4/4 passing
 - [x] Compile Python source and parse JSON schemas/fixtures successfully
-- [ ] Re-run `npm test` and `npm run build` on VPS with hotfix-001 applied; this is the current hard gate
+- [x] Fresh VPS dependency install + exact `tsc -b && vite build` production build passed
 
 ## P1 — Deploy and verify auth
 
@@ -45,20 +50,19 @@ Updated: 2026-09-06
 - [x] Ensure non-secret runtime paths/cookie settings are present in `/etc/for-us/for-us-api.env`
 - [x] Create `/opt/for-us/.venv` and install API dependencies
 - [x] Run Python tests on the exact VPS deployment
-- [x] Install frontend dependencies
-- [ ] Re-run Node tests using the corrected `npm test`
-- [ ] Build frontend into `/opt/for-us/apps/web/dist`
-- [ ] Reconcile `for-us-api.service` with the checked-in service example
-- [ ] Confirm API binds only to `127.0.0.1:8650`
-- [ ] Start + enable `for-us-api.service` only after tests/build pass
-- [ ] Verify loopback `/health`
-- [ ] Verify HTTPS app and API through nginx
-- [ ] Verify unauthenticated `/api/auth/me` returns 401
-- [ ] Verify `/auth/google/start` initiates Google OIDC correctly
+- [x] Install frontend dependencies and run Node tests
+- [x] Build frontend into `/opt/for-us/apps/web/dist`
+- [x] Reconcile `for-us-api.service` with the checked-in service example
+- [x] Confirm API binds only to `127.0.0.1:8650`
+- [x] Start + enable `for-us-api.service`
+- [x] Verify loopback `/health`
+- [x] Verify HTTPS app and API through nginx
+- [x] Verify unauthenticated `/api/auth/me` returns 401
+- [x] Verify `/auth/google/start` initiates Google OIDC correctly
 - [ ] Verify Google login succeeds for Luke
 - [ ] Verify Google login succeeds for Ava
 - [ ] Verify a third Google identity is rejected
-- [ ] Verify logout/session expiry and secure cookie behavior
+- [ ] Verify logout/session persistence and secure cookie behavior
 
 ## P2 — Hermes integration
 
