@@ -8,11 +8,20 @@ Updated: 2026-09-06
 - [x] Google OAuth callback fixed: `https://forus-date.duckdns.org/auth/google/callback`
 - [x] Isolated Linux service user `forus` exists
 - [x] `/opt/for-us` and `/var/lib/for-us` exist
-- [x] `for-us-api.service` skeleton exists but remains intentionally disabled
 - [x] Protected production env file exists and Google OAuth credentials were provisioned directly on the VPS
 - [x] Allowed identities are Luke + Ava only
 - [x] Hermes runtime/profile/cron/API inventory completed
 - [x] Hermes webhook intentionally remains disabled
+- [x] First VPS deployment attempt completed through the production-build gate
+- [x] Runtime-v1 bundle integrity passed on VPS
+- [x] API dependency install passed on VPS
+- [x] Python tests passed on VPS: 24/24
+- [x] Frontend dependency install passed on VPS
+- [x] Node test suite passed when run with `node --test`
+- [x] First production build failure isolated to missing Vite client type declaration; service correctly remained stopped/disabled
+- [x] Hotfix committed: `deploy/hotfix-001/apps/web/src/vite-env.d.ts`
+- [x] Frontend `test` script aligned to `node --test tests/*.test.mjs`
+- [x] COG resume runbook committed: `deploy/COG-RESUME-001.md`
 
 ## P0 — Finish deployable source
 
@@ -24,19 +33,20 @@ Updated: 2026-09-06
 - [x] Include production env template with no real secrets
 - [x] Include systemd/nginx deployment contract matching the live VPS
 - [x] Run current backend tests: 24/24 passing
-- [x] Run current Node logic tests: 4/4 passing
+- [x] Run current Node logic tests: 4/4 passing locally
 - [x] Compile Python source and parse JSON schemas/fixtures successfully
-- [ ] Run a **fresh dependency install + exact production frontend build** on the VPS deployment snapshot; local sandbox dependency downloads were blocked by DNS, so this remains the final P0 gate
+- [ ] Re-run `npm test` and `npm run build` on VPS with hotfix-001 applied; this is the current hard gate
 
 ## P1 — Deploy and verify auth
 
 - [x] Commit `deploy/COG-DEPLOY.md` with the first-deployment runbook and rollback/secret-safety gates
-- [ ] Reconstruct + verify runtime bundle on the VPS
-- [ ] Sync V1.5 source to `/opt/for-us`
-- [ ] Ensure non-secret runtime paths/cookie settings are present in `/etc/for-us/for-us-api.env`
-- [ ] Create `/opt/for-us/.venv` and install API dependencies
-- [ ] Run Python tests on the exact VPS deployment
-- [ ] Install frontend dependencies and run Node tests
+- [x] Reconstruct + verify runtime bundle on the VPS
+- [x] Sync V1.5 source to `/opt/for-us`
+- [x] Ensure non-secret runtime paths/cookie settings are present in `/etc/for-us/for-us-api.env`
+- [x] Create `/opt/for-us/.venv` and install API dependencies
+- [x] Run Python tests on the exact VPS deployment
+- [x] Install frontend dependencies
+- [ ] Re-run Node tests using the corrected `npm test`
 - [ ] Build frontend into `/opt/for-us/apps/web/dist`
 - [ ] Reconcile `for-us-api.service` with the checked-in service example
 - [ ] Confirm API binds only to `127.0.0.1:8650`
