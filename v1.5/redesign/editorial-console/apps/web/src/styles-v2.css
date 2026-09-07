@@ -1,0 +1,317 @@
+/* For Us — Editorial Console V2
+   Richer visual system: editorial warmth + tactile hi-fi + concierge ephemera + night-drive accent.
+   Intended to replace styles.css after approval/build validation. */
+
+:root{
+  --fu-bone:#f2eadf;
+  --fu-cream:#fff7ed;
+  --fu-paper:#e8dccd;
+  --fu-paper-deep:#d6c2aa;
+  --fu-ink:#281d1a;
+  --fu-ink-soft:#685850;
+  --fu-muted:#7d6d63;
+  --fu-line:#baa795;
+  --fu-oxblood:#742633;
+  --fu-wine:#541a27;
+  --fu-plum:#4b3146;
+  --fu-rosewood:#99535e;
+  --fu-signal:#ff7b52;
+  --fu-amber:#d68e32;
+  --fu-sage:#7b8c74;
+  --fu-night:#171213;
+  --fu-night-2:#2b1d25;
+  --fu-steel:#b6afa8;
+  --fu-shadow:0 24px 70px rgba(62,35,24,.16);
+  --fu-shadow-small:0 10px 30px rgba(62,35,24,.12);
+  --fu-serif:"Iowan Old Style","Palatino Linotype",Baskerville,Georgia,serif;
+  --fu-sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+}
+
+/* ---- ambient surface ---- */
+body{
+  background:
+    radial-gradient(500px 340px at 92% 8%,rgba(255,123,82,.15),transparent 64%),
+    radial-gradient(460px 390px at -12% 58%,rgba(116,38,51,.08),transparent 68%),
+    var(--fu-bone);
+  color:var(--fu-ink);
+}
+.appShell{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0)),
+    var(--fu-bone);
+  box-shadow:0 30px 110px rgba(21,12,10,.24);
+}
+.appShell::before{
+  opacity:.22;
+  background-image:
+    radial-gradient(circle at 1px 1px,rgba(77,56,45,.18) .55px,transparent .65px),
+    linear-gradient(115deg,transparent 0 46%,rgba(255,255,255,.10) 47% 48%,transparent 49% 100%);
+  background-size:5px 5px,100% 100%;
+}
+.appShell::after{
+  content:"";
+  position:fixed;
+  width:260px;height:260px;border-radius:50%;
+  right:-130px;top:90px;
+  background:radial-gradient(circle,rgba(255,174,111,.30),rgba(116,38,51,.10) 38%,transparent 68%);
+  filter:blur(2px);
+  pointer-events:none;
+  z-index:0;
+  animation:fuAmbientDrift 8s ease-in-out infinite alternate;
+}
+
+/* ---- typography ---- */
+.homePage>h1,.smallTitle,.matchPage>h1,.privatePage>h1,.stageObject h1,.revealObject h1,
+.invitation h2,.afterglow h2,.backstageHead h1,.togetherLaunch h2{
+  font-family:var(--fu-serif);
+  text-wrap:balance;
+}
+.eyebrow,.miniLabel,.slotLabel,.privacySeal{
+  letter-spacing:.18em;
+  font-weight:700;
+}
+
+/* ---- top hardware ---- */
+.topBar{
+  background:linear-gradient(180deg,rgba(242,234,223,.98) 0%,rgba(242,234,223,.91) 65%,rgba(242,234,223,0));
+  backdrop-filter:blur(8px);
+}
+.signal{
+  background:var(--fu-signal);
+  box-shadow:0 0 0 4px rgba(255,123,82,.11),0 0 22px rgba(255,123,82,.36);
+  animation:fuSignalPulse 3.2s ease-in-out infinite;
+}
+.avatar{
+  background:linear-gradient(145deg,#f4ebe0,#cdbdad);
+  border-color:#a18f82;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 8px 24px rgba(62,35,24,.15);
+}
+
+/* ---- home / tactile console ---- */
+.homePage{padding-top:46px}
+.homePage>h1{font-size:clamp(60px,16.5vw,82px);line-height:.84;letter-spacing:-.06em}
+.lede{font-size:19px;color:#6d5b52}
+.constraintObject{
+  border-color:#a99582;
+  background:
+    radial-gradient(180px 130px at 9% -5%,rgba(255,255,255,.55),transparent 70%),
+    linear-gradient(150deg,#e4d6c4 0%,#d7c3ab 60%,#ccb295 100%);
+  box-shadow:var(--fu-shadow),inset 0 1px 0 rgba(255,255,255,.82),inset 0 -1px 0 rgba(82,54,40,.16);
+  overflow:hidden;
+}
+.constraintObject::after{
+  content:"";
+  position:absolute;
+  width:68px;height:68px;border-radius:50%;
+  right:17px;top:48px;
+  background:
+    linear-gradient(35deg,transparent 48%,var(--fu-oxblood) 49% 52%,transparent 53%) center/33px 33px no-repeat,
+    radial-gradient(circle at 35% 29%,#faf7f3 0%,#ddd7d0 18%,#8d857e 45%,#d7d1cb 65%,#706a65 100%);
+  border:1px solid #81776f;
+  box-shadow:0 10px 22px rgba(48,31,25,.18),inset 0 0 0 7px rgba(255,255,255,.11),inset 0 1px 0 rgba(255,255,255,.8);
+  animation:fuKnobSettle .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.constraintTop{padding-right:92px}
+.constraintTop strong{color:var(--fu-ink);font-size:45px}
+.budgetRail button{
+  background:#eee5dc;border-color:#ad9b8b;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.budgetRail button.active{
+  background:linear-gradient(180deg,#82303f,#5a1b28);
+  border-color:#5a1b28;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 18px rgba(91,28,41,.18);
+}
+.control{background:rgba(246,239,231,.50);transition:background .2s ease,transform .2s ease}
+.control:focus-within{background:rgba(255,248,240,.86);transform:translateY(-1px)}
+.control::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--fu-signal);position:absolute;right:12px;bottom:13px;opacity:.75}
+.control{position:relative}
+.heroButton{
+  background:linear-gradient(180deg,#81303f,#5d1d2a);
+  border-color:#5d1d2a;
+  position:relative;overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 12px 28px rgba(89,25,38,.18);
+}
+.heroButton::before{
+  content:"";position:absolute;top:-120%;left:-35%;width:26%;height:330%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.20),transparent);
+  transform:rotate(13deg);
+  animation:fuButtonSweep 5.2s ease-in-out infinite;
+}
+.heroButton>*{position:relative;z-index:1}
+.softCard{position:relative}
+.softCard::after{
+  content:"NIGHT SIGNAL";float:right;margin-top:-40px;
+  width:96px;height:74px;border-radius:18px;
+  display:grid;place-items:end start;padding:10px;
+  font-size:7px;letter-spacing:.14em;color:rgba(255,255,255,.88);
+  background:
+    radial-gradient(circle at 20% 22%,#f4ad6e 0 10%,transparent 28%),
+    radial-gradient(circle at 80% 18%,#7f3850 0 14%,transparent 32%),
+    radial-gradient(circle at 58% 79%,#968771 0 17%,transparent 39%),
+    linear-gradient(145deg,#3b2028,#8f4854 42%,#d68e4d);
+  box-shadow:inset 0 1px rgba(255,255,255,.4),0 10px 24px rgba(75,37,35,.13);
+}
+
+/* ---- curation / invitation stack ---- */
+.invitationStack{gap:16px}
+.invitation{
+  padding:22px 18px 20px;
+  border:1px solid var(--fu-line);
+  border-radius:24px;
+  background:linear-gradient(160deg,rgba(255,248,239,.74),rgba(228,215,201,.42));
+  box-shadow:0 12px 36px rgba(63,38,28,.08),inset 0 1px rgba(255,255,255,.56);
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease,border-color .28s ease;
+}
+.invitation:nth-child(2){background:linear-gradient(160deg,rgba(240,225,220,.78),rgba(211,183,181,.44));}
+.invitation:nth-child(3){background:linear-gradient(160deg,rgba(229,229,213,.72),rgba(190,199,176,.40));}
+.invitation:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(63,38,28,.13)}
+.invitation .number{color:var(--fu-oxblood);text-shadow:0 1px rgba(255,255,255,.34)}
+.invitation:nth-child(2) .number{color:var(--fu-plum)}
+.invitation:nth-child(3) .number{color:#66735f}
+.inviteMeta{border-color:rgba(130,107,91,.34)}
+.modeStrip button.active{background:linear-gradient(180deg,#352628,#1f1718)}
+
+/* ---- Together ---- */
+.togetherLaunch,.matchPage{
+  position:relative;
+}
+.togetherLaunch::before,.matchPage::before{
+  content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-110px;top:-30px;
+  background:radial-gradient(circle,rgba(153,83,94,.20),transparent 68%);pointer-events:none;
+}
+.overlapMarks span{
+  background:linear-gradient(145deg,#f3eadf,#d7c8b9);
+  box-shadow:inset 0 1px rgba(255,255,255,.7),0 7px 20px rgba(70,40,31,.08);
+}
+.privateVoteGrid button.yes{background:linear-gradient(180deg,#82303f,#5a1b28)!important;color:var(--fu-cream)!important}
+
+/* ---- editorial reveal / hero art ---- */
+.revealObject{
+  padding-top:330px;
+}
+.revealGlow{
+  display:block;
+  position:absolute;
+  top:0;left:0;right:0;height:292px;
+  border-radius:28px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 90% 20%,#ffd19a 0 4%,#e27d60 15%,#84394f 35%,transparent 55%),
+    radial-gradient(circle at -8% 92%,#28151f 0 20%,#5d2b42 45%,transparent 66%),
+    linear-gradient(140deg,#38212c 0%,#76384a 32%,#c86a50 64%,#d99f5d 100%);
+  box-shadow:0 24px 60px rgba(87,45,34,.23);
+  animation:fuPosterBreathe 7s ease-in-out infinite alternate;
+}
+.revealGlow::before{
+  content:"01";position:absolute;left:16px;top:42px;
+  font-family:var(--fu-serif);font-size:104px;line-height:.8;color:rgba(255,247,238,.95);letter-spacing:-.08em;
+}
+.revealGlow::after{
+  content:"SOMETHING TO DO, SOMEWHERE TO DRIFT.";position:absolute;left:17px;right:17px;bottom:18px;
+  font-family:var(--fu-serif);font-style:italic;font-size:17px;line-height:1.15;color:rgba(255,247,238,.94);
+  letter-spacing:-.01em;
+}
+.revealObject::before{display:none}
+.revealObject h1{font-size:54px;line-height:.88}
+.revealPromise{font-size:19px}
+.essentials{background:rgba(255,248,240,.20)}
+.whyPanel{background:linear-gradient(150deg,#e5d7c7,#d8c5b0)}
+.practicalCard{
+  margin-top:22px;padding:6px 14px;border:1px solid var(--fu-line);border-radius:20px;background:rgba(223,209,191,.60);
+}
+
+/* ---- active date gets a full cinematic night mode ---- */
+.activePage{
+  color:#f7ede5;
+  background:
+    radial-gradient(460px 360px at 96% 0%,rgba(116,51,72,.85),transparent 54%),
+    radial-gradient(350px 310px at 16% 42%,rgba(98,38,52,.16),transparent 68%),
+    linear-gradient(180deg,#24191f 0%,#171213 74%);
+}
+.activePage::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;
+  background-image:radial-gradient(circle at 1px 1px,#fff .55px,transparent .65px);background-size:7px 7px;
+}
+.activeTop,.activeTop button,.presenceNote{color:#bca9aa}
+.progressLine{background:rgba(255,255,255,.14)}
+.progressLine i{background:linear-gradient(90deg,var(--fu-signal),#d7a05d);box-shadow:0 0 20px rgba(255,123,82,.30)}
+.stageObject{position:relative;padding-top:108px}
+.stageObject::before{
+  content:"";position:absolute;left:0;top:0;width:88px;height:88px;border-radius:50%;
+  background:radial-gradient(circle at 38% 31%,#ffd19c 0 4%,#e28a66 18%,#83415a 43%,#2d1c2a 73%);
+  box-shadow:0 0 42px rgba(196,83,88,.28),inset 0 1px rgba(255,255,255,.32);
+  animation:fuOrbPulse 4.2s ease-in-out infinite;
+}
+.stageObject::after{
+  content:"";position:absolute;left:25px;top:25px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.55);
+}
+.stageObject .miniLabel{color:#c2aeb0}
+.stageObject h1{color:#f8eee6;font-size:60px}
+.stageObject>p{color:#d9c8c1}
+.stageObject blockquote{color:#f3d4c5;border-color:rgba(255,255,255,.20)}
+.practicalInline{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.20);color:#c6b5b1}
+.activeActions .heroButton{background:#f3e8dc;border-color:#f3e8dc;color:#2b1e1d;box-shadow:0 15px 35px rgba(0,0,0,.28)}
+.activeActions .secondary{border-color:rgba(255,255,255,.26);color:#e4d8d2;background:rgba(255,255,255,.03)}
+
+/* ---- Keepsakes = private magazine archive ---- */
+.afterglow{
+  background:linear-gradient(150deg,#e5d6c5,#d2bba5);border-color:#ad9681;
+  box-shadow:var(--fu-shadow-small),inset 0 1px rgba(255,255,255,.6);
+}
+.photoButton{background:rgba(255,248,240,.50)!important}
+.keepsakeGrid{gap:14px}
+.firstAlbum{
+  background:
+    radial-gradient(circle at 78% 15%,rgba(255,123,82,.26),transparent 33%),
+    linear-gradient(145deg,#342229,#6a3040 56%,#b16b55);
+  color:#fff4eb;border-color:#6b3744;
+}
+.firstAlbum .miniLabel,.firstAlbum p{color:#dfc9c3}
+.albumMark{background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.24)!important;color:#fff4eb!important}
+.memoryCard{border-radius:22px;overflow:hidden;background:#eadfd2;box-shadow:0 10px 30px rgba(65,39,29,.09)}
+.memoryCard:nth-child(3n+1){background:#e7d0cd}.memoryCard:nth-child(3n+2){background:#dfe1d3}
+
+/* ---- Backstage uses quiet operational sage / amber ---- */
+.checklist{position:relative}
+.checklist::before{content:"PRODUCER CONSOLE";display:block;margin-bottom:12px;font-size:7px;font-weight:700;letter-spacing:.17em;color:#7a695f}
+.check{background:linear-gradient(150deg,rgba(239,232,221,.78),rgba(216,206,188,.64));border-color:#b5a18e!important}
+.check i{background:var(--fu-sage)!important;color:white!important}
+.check:nth-child(4) i{background:var(--fu-amber)!important}
+
+/* ---- After Hours stays clearly separate / private ---- */
+.privatePage{
+  background:
+    radial-gradient(440px 340px at 100% 0%,rgba(121,50,76,.62),transparent 55%),
+    linear-gradient(180deg,#21161d 0%,#120f11 100%);
+  color:#f6ebe5;
+}
+.privatePage .privacySeal{color:#d2b5bb}
+.privatePrimary{background:linear-gradient(180deg,#f0dfd6,#d9c2b8)!important;color:#281c20!important}
+.privateGhost{border-color:rgba(255,255,255,.25)!important;color:#dacccd!important}
+.ceilingList button,.privateCard,.matchList>div{background:rgba(255,255,255,.035)!important;border-color:rgba(255,255,255,.18)!important}
+.ceilingList button.active{border-color:#d78a70!important;box-shadow:0 0 0 1px rgba(215,138,112,.28),0 0 28px rgba(126,49,70,.16)}
+
+/* ---- bottom nav as quiet instrument strip ---- */
+.bottomNav{
+  background:linear-gradient(180deg,rgba(242,234,223,0),rgba(242,234,223,.92) 34%,rgba(242,234,223,.99) 66%);
+  backdrop-filter:blur(8px);
+}
+.bottomNav button.active{color:var(--fu-oxblood)}
+.bottomNav button.active::before{
+  content:"";display:block;margin:0 auto 6px;width:5px;height:5px;border-radius:50%;background:var(--fu-signal);box-shadow:0 0 12px rgba(255,123,82,.66);
+}
+.toast{background:linear-gradient(180deg,#352629,#21191a)!important;color:#f9eee5!important;box-shadow:0 16px 45px rgba(0,0,0,.24)!important}
+
+/* ---- motion system ---- */
+@keyframes fuSignalPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 4px rgba(255,123,82,.10),0 0 18px rgba(255,123,82,.25)}50%{transform:scale(1.14);box-shadow:0 0 0 7px rgba(255,123,82,.05),0 0 26px rgba(255,123,82,.42)}}
+@keyframes fuAmbientDrift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-24px,52px,0) scale(1.14)}}
+@keyframes fuKnobSettle{from{transform:rotate(-24deg) scale(.92);opacity:.2}to{transform:rotate(0) scale(1);opacity:1}}
+@keyframes fuButtonSweep{0%,67%{left:-38%}84%,100%{left:125%}}
+@keyframes fuPosterBreathe{from{filter:saturate(.93) brightness(.98);transform:scale(1)}to{filter:saturate(1.08) brightness(1.02);transform:scale(1.006)}}
+@keyframes fuOrbPulse{0%,100%{transform:scale(1);box-shadow:0 0 32px rgba(196,83,88,.20)}50%{transform:scale(1.035);box-shadow:0 0 54px rgba(224,120,91,.34)}}
+
+@media (prefers-reduced-motion:reduce){
+  .signal,.appShell::after,.constraintObject::after,.heroButton::before,.revealGlow,.stageObject::before{animation:none!important}
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.001ms!important}
+}
